@@ -1,0 +1,27 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: patnymtestazuredevopsaks 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: patnymtestazuredevopsaks 
+    spec:
+      containers:
+        - name: patnymtestazuredevopsaks 
+          image: dkubewe01acr.azurecr.io/patnymtestazuredevopsaks
+          ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: patnymtestazuredevopsaks
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 8080 
+    selector:
+        app: patnymtestazuredevopsaks
